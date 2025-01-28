@@ -1,0 +1,30 @@
+version: "2.1"
+services:
+  jellyfin:
+    image: linuxserver/jellyfin
+    container_name: jellyfin
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Asia/Calcutta
+      - DISPLAY=:0  # If using graphical apps inside the container (only required in some cases)
+      - EMBY_HWACCEL=vaapi # Ensure VA-API is used for hardware acceleration
+
+      #- JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
+    volumes:
+      - ./config:/config
+      - /mnt/cloud:/mnt/cloud
+    ports:
+      - 8095:8096
+      - 8921:8920 #optional
+      - 7360:7359/udp #optional
+      - 1961:1900/udp #optional
+    restart: unless-stopped
+    devices:
+      - /dev/dri:/dev/dri  # Pass Intel GPU device for transcoding
+
+
+networks:
+  default:
+    external:
+      name: swag_default

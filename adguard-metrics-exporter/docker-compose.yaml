@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  adguard-exporter:
+    image: ghcr.io/henrywhitaker3/adguard-exporter:latest
+    container_name: adguard-exporter
+    environment:
+      - ADGUARD_SERVERS=http://adguard_ip:85
+      - ADGUARD_USERNAMES=ag_username
+      - ADGUARD_PASSWORDS=ag_pass
+      - INTERVAL=10s # Optional, defaults to 30s
+    ports:
+      - "9618:9618"
+      
+networks:
+  default:
+    external:
+      name: swag_default

@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    #network_mode: "host"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /sys/class/net:/host/sys/class/net:ro
+      - /:/rootfs:ro
+      - ./:/textfile_collector:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.thermal_zone'
+      - '--collector.textfile.directory=/textfile_collector'
+    ports:
+    - '9100:9100'
+#    expose:
+#      - 9100
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+    - '3068:3000'
+    environment:
+      - "GF_SERVER_ROOT_URL=https://mydomain.com/grafana"
+      - "GF_SERVER_DOMAIN=https://mydomain.com/"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "./prometheus/web.yml:/etc/prometheus/web.yml"
+    ports:
+      - "9099:9099"  # Map internal port 9099 to external port 9099
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.config.file=/etc/prometheus/web.yml"
+      - "--web.listen-address=:9099"           # Change the internal port
+      - "--web.route-prefix=/prometheus"      # Set the route prefix
+      - "--web.external-url=https://mydomain.com/prometheus"  # Set the external URL
+
+volumes:
+  grafana-storage:
+
+networks:
+  default:
+    external:
+      name: swag_default
