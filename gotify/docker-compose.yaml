@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  gotify:
+    image: gotify/server
+    container_name: gotify
+    ports:
+      - 87:80
+    volumes:
+      - ./gotify:/app/data
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Calcutta
+
+networks:
+  default:
+    external:
+      name: swag_default

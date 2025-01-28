@@ -1,0 +1,25 @@
+version: '3'
+services:
+  wireguard:
+    image: linuxserver/wireguard
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000                      # Set this to match the user ID on your system
+      - PGID=1000                      # Set this to match the group ID on your system
+      - TZ=Asia/Calcutta               # Update this to match your timezone
+      - SERVERURL=vpn.mydomain.com    # Your domain/subdomain for external access (set it up in DNS)
+      - SERVERPORT=51820               # Port WireGuard listens on (ensure it's open in your router)
+      - PEERS=8                        # Number of clients/peers to generate configs for
+      - PEERDNS=1.1.1.1,1.0.0.1        # DNS servers for the VPN
+      - INTERNAL_SUBNET=10.13.13.0/24  # Optional: Custom internal subnet (adjust as needed)
+    volumes:
+      - /opt/wireguard-server/config:/config # Persistent storage for configs
+      - /lib/modules:/lib/modules
+    ports:
+      - 51820:51820/udp                # UDP port for WireGuard
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1   # Required for routing traffic
+    restart: unless-stopped

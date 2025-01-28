@@ -1,0 +1,21 @@
+version: '3'
+services:
+  vaultwarden:
+    image: vaultwarden/server
+    container_name: vaultwarden
+    volumes:
+      - ./:/data
+    ports:
+      - 100:80
+    environment:
+      - UID=1000
+      - GID=1000
+      - DOMAIN=https://mydomain.com/vaultwarden
+      - SIGNUPS_ALLOWED=false
+      #- ADMIN_TOKEN=Xn7l1ntbaDrv+yH9otncN0ahTzsoOdGfRZGpH6QdI+WMy61pvsR3mfZXUN9xYHpJ
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: swag_default

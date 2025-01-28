@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  emby:
+    image: linuxserver/emby:beta
+    container_name: emby
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Calcutta
+      - DISPLAY=:0  # If using graphical apps inside the container (only required in some cases)
+      - EMBY_HWACCEL=vaapi # Ensure VA-API is used for hardware acceleration
+    volumes:
+      - /var/lib/emby:/config
+      - /mnt/cloud:/mnt/cloud
+    devices:
+      - /dev/dri:/dev/dri  # Pass Intel GPU device for transcoding
+    ports:
+      - 8096:8096
+      - 8920:8920
+    restart: unless-stopped
+    
+networks:
+  default:
+    external:
+      name: swag_default

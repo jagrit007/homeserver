@@ -1,0 +1,28 @@
+---
+version: "2.1"
+services:
+  swag:
+    image: ghcr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Calcutta
+      - URL=mydomain.com
+      - SUBDOMAINS=wildcard
+      - EXTRA_DOMAINS=*mydomain.com
+      - VALIDATION=dns
+      - PROPAGATION=30
+      - DNSPLUGIN=cloudflare
+      - EMAIL=email@mydomain.com
+
+    volumes:
+      - ./config:/config
+    ports:
+      - 443:443
+      - 80:80 #optional
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

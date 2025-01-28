@@ -1,0 +1,42 @@
+version: "3"
+
+#networks:
+#  gitea:
+#    external: false
+
+services:
+  server:
+    image: gitea/gitea:latest
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: unless-stopped
+#    networks:
+#      - gitea
+    volumes:
+      - ./gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3344:3000"
+      - "222:22"
+
+  postgres:
+    image: postgres
+    restart: always
+    expose:
+    - 5432
+#    ports:
+#      - 5469:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=pg_password
+      - POSTGRES_USER=pg_user
+      - POSTGRES_DB=pg_db
+
+networks:
+  default:
+    external:
+      name: swag_default

@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  bg-remove:
+    build: .
+    ports:
+      - "83:83"
+    restart: unless-stopped
+
+
+networks:
+  default:
+    external:
+      name: swag_default
