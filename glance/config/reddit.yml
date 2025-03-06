@@ -1,0 +1,27 @@
+- name: Reddit
+  columns:
+    - size: full
+      widgets:
+        - type: split-column
+          max-columns: 4
+          widgets:
+            - subreddit: selfhosted
+              <<: *subreddit-settings
+            - subreddit: homelab
+              <<: *subreddit-settings
+            - subreddit: linux
+              <<: *subreddit-settings
+            - subreddit: sysadmin
+              <<: *subreddit-settings
+            - subreddit: DevOps
+              <<: *subreddit-settings
+            - subreddit: Networking
+              <<: *subreddit-settings
+            - subreddit: DataHoarding
+              <<: *subreddit-settings
+            - subreddit: OpenSource
+              <<: *subreddit-settings
+            - subreddit: Privacy
+              <<: *subreddit-settings
+            - subreddit: FreeSoftware
+              <<: *subreddit-settings

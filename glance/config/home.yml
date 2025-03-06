@@ -1,0 +1,307 @@
+- name: Home
+  # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+  # hide-desktop-navigation: true
+  columns:
+    - size: small
+      widgets:
+        - type: releases
+          cache: 1d
+          show-source-icon: true
+          # Without authentication the Github API allows for up to 60 requests per hour. You can create a
+          # read-only token from your Github account settings and use it here to increase the limit.
+          token: ${GIT_PAT_TOKEN}
+          repositories:
+            - dockerhub:adguard/adguardhome
+            - dockerhub:linuxserver/emby
+            - dockerhub:linuxserver/nextcloud
+            - dockerhub:linuxserver/jackett
+            - dockerhub:linuxserver/sonarr
+            - dockerhub:linuxserver/radarr
+            - dockerhub:linuxserver/swag
+            - dockerhub:linuxserver/prowlarr
+            - dockerhub:linuxserver/code-server
+            - dockerhub:linuxserver/wireguard
+            - dockerhub:gitea/gitea
+            - dockerhub:gotify/server
+
+            - glanceapp/glance
+            - go-gitea/gitea
+            - immich-app/immich
+            # - syncthing/syncthing
+            - whoeevee/EeveeSpotify
+            - automatisch/automatisch
+            - Stirling-Tools/Stirling-PDF
+            - hydralauncher/hydra
+            - Genymobile/scrcpy
+            - barry-ran/QtScrcpy
+            - Heroic-Games-Launcher/HeroicGamesLauncher
+            - gitroomhq/postiz-app
+            - arabcoders/watchstate
+            - 5rahim/seanime
+            - supechicken/waydroid-androidtv-build
+            - fosrl/pangolin
+            - bkaankose/Wino-Mail
+            - kubero-dev/kubero
+            - vikdevelop/SaveDesktop
+            - ClassicOldSong/moonlight-android
+            - ClassicOldSong/Apollo
+
+        - type: dns-stats
+          service: adguard
+          allow-insecure: true
+          url: http://holyfox.local:85
+          username: ${ADGUARD_USERNAME}
+          password: ${ADGUARD_PASSWORD}
+
+        - type: server-stats
+          servers:
+            - type: local
+              hide-mountpoints-by-default: true
+              mountpoints:
+                "/app/config":
+                  hide: false
+                  name: "Host"
+                "/mnt/local/HDD0":
+                  hide: false
+                  name: "HDD0"
+              name: Services
+
+
+
+
+        # - type: calendar
+        #   first-day-of-week: monday
+
+        # - type: rss
+        #   limit: 10
+        #   collapse-after: 3
+        #   cache: 12h
+        #   feeds:
+        #     - url: https://selfh.st/rss/
+        #       title: selfh.st
+        #     - url: https://ciechanow.ski/atom.xml
+        #     - url: https://www.joshwcomeau.com/rss.xml
+        #       title: Josh Comeau
+        #     - url: https://samwho.dev/rss.xml
+        #     - url: https://ishadeed.com/feed.xml
+        #       title: Ahmad Shadeed
+
+        # - type: twitch-channels
+        #   channels:
+        #     - theprimeagen
+        #     - j_blow
+        #     - piratesoftware
+        #     - cohhcarnage
+        #     - christitustech
+        #     - EJ_SA
+
+    - size: full
+      widgets:
+    #     - type: group
+    #       widgets:
+    #         - type: hacker-news
+    #         - type: lobsters
+
+      
+
+        - type: docker-containers
+          hide-by-default: true
+          title: Containers
+          collapse-after: 5
+
+        - type: videos
+          cache: 30m
+          style: grid-cards
+          # collapse-after: 10
+          limit: 30
+          collapse-after-rows: 2
+          include-shorts: true
+          channels:
+            - UC_0CVCfC_3iuHqmyClu59Uw # ETA Prime
+            - UCltuKUCkE82ojAtPJy9rFQA # Venom's Tech
+            - UCdBK94H6oZT2Q7l0-b0xmMg # Short Circuit
+            - UC8wZnXYK_CGKlBcZp-GxYPA # NeuralNine Python
+            - UCdp6GUwjKscp5ST4M4WgIpw # TechWiser
+            - UCg6gPGh8HU2U01vaFCAsvmQ # ChrisTitusTech
+            - UCeeFfhMcJa1kjtfZAGskOCA # Tech Linked
+            - UCOk-gHyjcWZNj3Br4oxwh0A # Techno Tim
+            - UCO2x-p9gg9TLKneXlibGR7w # Snazzy Labs
+            - UCWFKCr40YwOZQx8FHU_ZqqQ # JerryRigEverything
+            - UCgdTVe88YVSrOZ9qKumhULQ # Hardware Haven
+            - UC9evhW4JB_UdXSLeZGy8lGw # Raid Owl
+            - UC5UAwBUum7CPN5buc-_N1Fw # The Linux Experiment
+            - UCv6J_jJa8GJqFwQNgNrMuww # ServeTheHome
+            - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
+            - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+            - UCsBjURrPoezykLs9EqgamOA # Fireship
+            # - UCBJycsmduvYEL83R_U4JriQ # Marques Brownlee
+            # - UCHnyfMqiRRG1u-2MsSQLbXA # Veritasium
+
+        # - type: group
+        #   widgets:
+        #     - type: reddit
+        #       subreddit: selfhosted
+        #       show-thumbnails: true
+        #     - type: reddit
+        #       subreddit: homelab
+        #       show-thumbnails: true
+        #     - type: reddit
+        #       subreddit: raspberry_pi
+        #       show-thumbnails: true
+        #     - type: reddit
+        #       subreddit: unixporn
+        #       show-thumbnails: true
+
+    - size: small
+      widgets:
+        - type: search
+          search-engine: google
+          new-tab: true
+          autofocus: true
+          bangs:
+            - title: GitHub
+              shortcut: "!gh"
+              url: https://github.com/search?q={QUERY}&type=repositories
+
+            - title: FitGirl
+              shortcut: "!fg"
+              url: https://fitgirl-repacks.site/?s={QUERY}
+
+            - title: YouTube
+              shortcut: "!yt"
+              url: https://www.youtube.com/results?search_query={QUERY}
+
+            - title: SimpleIcons
+              shortcut: "!si"
+              url: https://simpleicons.org/?q={QUERY}
+
+            - title: Grafana
+              shortcut: "!gf"
+              url: https://hs6.domain.com/grafana/dashboards?query={QUERY}
+
+        - type: custom-api
+          title: Immich stats
+          cache: 1d
+          url: http://${IMMICH_URL}/api/server/statistics
+          headers:
+            x-api-key: ${IMMICH_API_KEY}
+            Accept: application/json
+          template: |
+            <div class="flex justify-between text-center">
+              <div>
+                  <div class="color-highlight size-h3">{{ .JSON.Int "photos" | formatNumber }}</div>
+                  <div class="size-h6">PHOTOS</div>
+              </div>
+              <div>
+                  <div class="color-highlight size-h3">{{ .JSON.Int "videos" | formatNumber }}</div>
+                  <div class="size-h6">VIDEOS</div>
+              </div>
+              <div>
+                  <div class="color-highlight size-h3">{{ div (.JSON.Int "usage" | toFloat) 1073741824 | toInt | formatNumber }}GB</div>
+                  <div class="size-h6">USAGE</div>
+              </div>
+            </div>
+        # - type: clock
+        #   hour-format: 12h
+        #   timezones:
+        #     - timezone: Asia/Kolkata
+        #       label: India
+        #     - timezone: America/New_York
+        #       label: New York
+        #     - timezone: Asia/Tokyo
+        #       label: Tokyo
+
+        # - type: weather
+        #   location: New York
+        #   units: metric # alternatively "imperial"
+        #   hour-format: 12h # alternatively "24h"
+        #   # Optionally hide the location from being displayed in the widget
+        #   # hide-location: true
+
+        - type: group
+          widgets:
+          - type: monitor
+            # allow-insecure: true
+            cache: 1m
+            title: Media Apps
+            # style: compact
+            sites:
+              - title: Emby
+                url: https://emby.domain.com
+                icon: di:emby
+              - title: Immich
+                url: https://gallery.domain.com
+                icon: di:immich
+              - title: Nextcloud
+                url: https://nextcloud.domain.com
+                icon: di:nextcloud
+              - title: Sonarr
+                url: https://sonarr.hs.domain.com
+                icon: di:sonarr
+              - title: Jellyseerr
+                url: https://media.hs.domain.com
+                icon: di:jellyseerr
+              - title: Radarr
+                url: https://radarr.hs.domain.com
+                icon: di:radarr
+              - title: Prowlarr
+                url: https://domain.com/prowlarr/
+                icon: di:prowlarr
+              - title: Prowlarr
+                url: https://pdf.domain.com/
+                icon: di:stirling-pdf  
+
+          - type: monitor
+            # allow-insecure: true
+            cache: 1m
+            title: Productivity Apps
+            # style: compact
+            sites:
+              - title: Gitea
+                url: https://gitea.domain.com
+                icon: di:gitea
+              - title: AdGuard Home
+                url: http://holyfox.local:85
+                icon: di:adguard-home
+              - title: Hoarder
+                url: https://bookmark.domain.com/
+                icon: di:hoarder-light
+              - title: Gotify
+                url: https://bookmark.domain.com/
+                icon: di:gotify
+              - title: Grafana
+                url: https://hs6.domain.com/grafana/
+                icon: di:grafana
+              - title: QBittorrent
+                url: http://192.168.1.111:8080
+                icon: di:qbittorrent
+              - title: Code Server
+                url: https://code.hs.domain.com/
+                icon: di:code
+              - title: Prometheus
+                url: https://hs6.domain.com/prometheus
+                icon: di:prometheus
+                alt-status-codes:
+                  - 403
+                  - 401
+              - title: Vaultwarden
+                url: https://hs6.domain.com/vaultwarden
+                icon: di:vaultwarden-light
+
+
+
+        # - type: markets
+        #   # The link to go to when clicking on the symbol in the UI,
+        #   # {SYMBOL} will be substituded with the symbol for each market
+        #   symbol-link-template: https://www.tradingview.com/symbols/{SYMBOL}/news
+        #   markets:
+        #     - symbol: SPY
+        #       name: S&P 500
+        #     - symbol: BTC-USD
+        #       name: Bitcoin
+        #     - symbol: NVDA
+        #       name: NVIDIA
+        #     - symbol: AAPL
+        #       name: Apple
+        #     - symbol: MSFT
+        #       name: Microsoft

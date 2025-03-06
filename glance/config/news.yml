@@ -1,0 +1,86 @@
+- name: News
+  columns:
+    - size: full
+      widgets:
+        - type: split-column
+          max-columns: 3
+          widgets:
+            - type: rss
+              title: "Noted"
+              limit: 30
+              style: detailed-list
+              collapse-after: 5
+              cache: 6h
+              feeds:
+                - url: https://noted.lol/rss/
+                  title: Noted
+                  # limit: 5
+            - type: rss
+              title: "It's FOSS"
+              limit: 30
+              style: detailed-list
+              collapse-after: 5
+              cache: 6h
+              feeds:
+                - url: https://itsfoss.com/rss/
+                  title: It's FOSS
+                  # limit: 5
+            - type: rss
+              title: "How To Geek"
+              limit: 30
+              style: detailed-list
+              collapse-after: 5
+              cache: 6h
+              feeds:
+                - url: https://www.howtogeek.com/feed/
+                  title: How To Geek
+                  # limit: 5
+            - type: rss
+              title: "9to5linux"
+              limit: 30
+              style: detailed-list
+              collapse-after: 5
+              cache: 6h
+              feeds:
+                - url: https://9to5linux.com/feed/atom
+                  title: 9to5Linux
+                  # limit: 5
+            - type: group
+              title: "Tech News"
+              widgets:
+              - type: rss
+                title: "Make Use Of"
+                limit: 30
+                style: detailed-list
+                collapse-after: 5
+                cache: 6h
+                feeds:
+                  - url: https://www.makeuseof.com/feed/
+                    title: Make Use Of
+                    # limit: 5
+              - type: rss
+                title: "MISC News"
+                limit: 30
+                style: detailed-list
+                collapse-after: 5
+                cache: 6h
+                feeds:
+                  - url: https://www.omglinux.com/feed/
+                    title: OMG Linux
+                    # limit: 5
+                  # - url: https://www.howtoforge.com/feed.rss
+                  #   title: How To Forge
+            - type: rss
+              title: "Podcast RSS Feeds"
+              limit: 10
+              style: detailed-list
+              collapse-after: 5
+              cache: 6h
+              feeds:
+                - url: https://selfh.st/rss/
+                  title: selfh.st
+                - url: https://thisweekinlinux.com/rss
+                  title: This Week in Linux
+            - type: hacker-news
+              cache: 6h
+            # - type: lobsters
