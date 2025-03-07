@@ -109,33 +109,47 @@
           title: Containers
           collapse-after: 5
 
-        - type: videos
-          cache: 30m
-          style: grid-cards
-          # collapse-after: 10
-          limit: 30
-          collapse-after-rows: 2
-          include-shorts: true
-          channels:
-            - UC_0CVCfC_3iuHqmyClu59Uw # ETA Prime
-            - UCltuKUCkE82ojAtPJy9rFQA # Venom's Tech
-            - UCdBK94H6oZT2Q7l0-b0xmMg # Short Circuit
-            - UC8wZnXYK_CGKlBcZp-GxYPA # NeuralNine Python
-            - UCdp6GUwjKscp5ST4M4WgIpw # TechWiser
-            - UCg6gPGh8HU2U01vaFCAsvmQ # ChrisTitusTech
-            - UCeeFfhMcJa1kjtfZAGskOCA # Tech Linked
-            - UCOk-gHyjcWZNj3Br4oxwh0A # Techno Tim
-            - UCO2x-p9gg9TLKneXlibGR7w # Snazzy Labs
-            - UCWFKCr40YwOZQx8FHU_ZqqQ # JerryRigEverything
-            - UCgdTVe88YVSrOZ9qKumhULQ # Hardware Haven
-            - UC9evhW4JB_UdXSLeZGy8lGw # Raid Owl
-            - UC5UAwBUum7CPN5buc-_N1Fw # The Linux Experiment
-            - UCv6J_jJa8GJqFwQNgNrMuww # ServeTheHome
-            - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
-            - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
-            - UCsBjURrPoezykLs9EqgamOA # Fireship
-            # - UCBJycsmduvYEL83R_U4JriQ # Marques Brownlee
-            # - UCHnyfMqiRRG1u-2MsSQLbXA # Veritasium
+        - type: group
+          widgets:
+          - type: videos
+            cache: 30m
+            style: grid-cards
+            # collapse-after: 10
+            limit: 30
+            collapse-after-rows: 2
+            include-shorts: true
+            channels:
+              - UC_0CVCfC_3iuHqmyClu59Uw # ETA Prime
+              - UCltuKUCkE82ojAtPJy9rFQA # Venom's Tech
+              - UCdBK94H6oZT2Q7l0-b0xmMg # Short Circuit
+              - UC8wZnXYK_CGKlBcZp-GxYPA # NeuralNine Python
+              - UCdp6GUwjKscp5ST4M4WgIpw # TechWiser
+              - UCg6gPGh8HU2U01vaFCAsvmQ # ChrisTitusTech
+              - UCeeFfhMcJa1kjtfZAGskOCA # Tech Linked
+              - UCOk-gHyjcWZNj3Br4oxwh0A # Techno Tim
+              - UCO2x-p9gg9TLKneXlibGR7w # Snazzy Labs
+              - UCWFKCr40YwOZQx8FHU_ZqqQ # JerryRigEverything
+              - UCgdTVe88YVSrOZ9qKumhULQ # Hardware Haven
+              - UC9evhW4JB_UdXSLeZGy8lGw # Raid Owl
+              - UCwFpzG5MK5Shg_ncAhrgr9g # Awesome Self-Hosted
+              - UCA295QVkf9O1RQ8_-s3FVXg # AevyTV
+              - UC5UAwBUum7CPN5buc-_N1Fw # The Linux Experiment
+              - UCv6J_jJa8GJqFwQNgNrMuww # ServeTheHome
+              - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
+              - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling
+              - UCsBjURrPoezykLs9EqgamOA # Fireship
+              # - UCBJycsmduvYEL83R_U4JriQ # Marques Brownlee
+              # - UCHnyfMqiRRG1u-2MsSQLbXA # Veritasium
+          - type: videos
+            cache: 30m
+            style: grid-cards
+            # collapse-after: 10
+            limit: 30
+            collapse-after-rows: 2
+            include-shorts: true
+            title: Playlist
+            playlists:
+            - PLXXXXXXXXXX # Add your playlist ID, set it to unlisted, set it to add new videos to the top
 
         # - type: group
         #   widgets:
